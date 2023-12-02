@@ -135,3 +135,75 @@ const finalSentence = person.friends.reduce((sentence, friend) => {
   return sentence;
 }, '');
 console.log(finalSentence.trim());
+
+console.warn(`Folosind obiectul person si reduce, afiseaza in consola
+un string care contine skillurile persoanei, separate prin virgula`);
+const personSkills = person.skills.reduce(
+  (personSkills, skill, index, skills) => {
+    const punctuation = skills.length - 1 === index ? '' : ', ';
+
+    return (personSkills += `${skill}${punctuation}`);
+  },
+  '',
+);
+
+console.log(personSkills);
+
+console.warn(` In mod similar, afiseaza skillurile care incep cu c `);
+const listSkills = person.skills.reduce((filteredSkills, skill) => {
+  if (skill.toLowerCase().startsWith('c')) {
+    filteredSkills.push(skill);
+  }
+
+  return filteredSkills;
+}, []);
+console.log(listSkills.join(','));
+
+console.warn(` Folosind reduce, afiseaza propozitia: "Numele de familie
+ale prietenilor mei sunt: xxx, xxx , xxx."`);
+const surnameFriends = person.friends.reduce(
+  (message, friend, index, friends) => {
+    const { surname } = friend;
+    const punctuation = friends.length - 1 === index ? '.' : ', ';
+
+    return (message += `${surname}${punctuation}`);
+  },
+  'Numele de familie ale prietenilor mei sunt: ',
+);
+console.log(surnameFriends);
+
+console.warn(` Folosind reduce, afiseaza numarul total de ani pe care
+il au persoanele din arrayul friends `);
+const totalFriendsAge = person.friends.reduce((totalAge, friend) => {
+  const { age } = friend;
+  return (totalAge += age);
+}, 0);
+console.log(totalFriendsAge);
+
+console.warn(` Folosind reduce, afiseaza suma anilor  persoanelor.`);
+const totalArrayAge = person.friends.reduce((totalAge, friend) => {
+  const { age } = friend;
+  return (totalAge += age);
+}, person.age);
+console.log(totalArrayAge);
+
+console.warn(
+  ` Afiseaza diferenta de varsta dintre persoana si prietenii din arrayul friends.`,
+);
+const personFriendsAgeDiff = Math.abs(person.age - totalArrayAge);
+
+console.log(personFriendsAgeDiff);
+
+console.warn(`Afiseaza fraza: "Intre Dragos si Larry este o diferenta de xx ani.
+Intre Dragos si Steven... ". Repeta pentru tot arrayul friends.`);
+
+const finalExercise = person.friends.reduce((sentence, friend) => {
+  const { name, age } = friend;
+
+  const ageDiff = Math.abs(person.age - age);
+
+  sentence += `Intre ${person.name} si ${name} este o diferenta de ${ageDiff} ani. `;
+
+  return sentence;
+}, '');
+console.log(finalExercise.trim());

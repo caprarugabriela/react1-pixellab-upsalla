@@ -61,3 +61,44 @@ const sentence1 = Object.values(person.friends).reduce((message, friend) => {
   return message;
 }, '');
 console.log(sentence1.trim());
+
+console.warn(
+  `Prin aceeasi metoda, afiseaza o lista cu numele complet al prietenilor. `,
+);
+const sentence2 = Object.values(person.friends).reduce((message, friend) => {
+  const { name, surname } = friend;
+
+  message += `${name} ${surname} `;
+
+  return message;
+}, '');
+
+console.log(sentence2);
+
+console.warn(`Afiseaza propozitia: “Prietenii mei sunt Larry Larryson,
+Steven Stevenson si Carol Carolson.” folosind Object.values()`);
+console.log(
+  Object.values(person.friends).reduce((sentence, friend, index, friends) => {
+    const { name, surname } = friend;
+    const length = friends.length;
+    const punctuation =
+      length - 1 === index ? '.' : length - 2 === index ? ' si ' : ', ';
+
+    sentence += `${name} ${surname}${punctuation}`;
+
+    return sentence;
+  }, 'Prietenii mei sunt '),
+);
+
+console.warn(
+  `In mod similar, afiseaza propozitia  “Larry are xx ani. Steven are …”`,
+);
+const sentence3 = Object.values(person.friends).reduce((message, friend) => {
+  const { name, age } = friend;
+
+  message += `${name} are ${age} ani. `;
+
+  return message;
+}, '');
+
+console.log(sentence3);
