@@ -3,6 +3,13 @@ import { deleteContact } from './query.js';
 import renderMessage from './message.js';
 const stage = document.querySelector('.stage');
 
+// reset stage on logo click
+// aici trebuia sa scoatem si notificarea?
+const resetLogo = document.querySelector('.reset-logo');
+resetLogo.addEventListener('click', () => {
+  stage.innerHTML = '';
+});
+
 // delete contact
 stage.addEventListener('click', (event) => {
   const { target } = event;

@@ -50,6 +50,17 @@ searchForm.addEventListener('submit', (event) => {
     fragment.append(renderContact(contact));
   });
 
+  // Make sure search works for three letter and up
+  if (searchValue.length <= 3) {
+    addMessage(
+      renderMessage(
+        `You should have more than 3 characters in your search.`,
+        'warning',
+      ),
+    );
+    return;
+  }
+
   stage.innerHTML = '';
   // in loc de console.log ->   stage.append(JSON.stringify(contacts));
   stage.append(fragment);
