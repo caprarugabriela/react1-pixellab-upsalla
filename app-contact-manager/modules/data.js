@@ -13,6 +13,12 @@ export default [
         age: 32,
         id: 1,
       },
+      {
+        name: 'Rex',
+        species: 'Caine',
+        age: 32,
+        id: 12,
+      },
     ],
   },
   {

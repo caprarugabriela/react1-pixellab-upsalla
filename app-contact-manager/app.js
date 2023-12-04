@@ -2,3 +2,4 @@
 // aka trebuie sa pui neaparat .js altfel nu il va lua broswerul :)
 
 import _ from './modules/searchForm.js';
+import __ from './modules/addContactButton.js';

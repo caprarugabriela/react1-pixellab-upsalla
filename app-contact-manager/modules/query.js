@@ -9,7 +9,9 @@ export const findContact = (needle = 'query') => {
       return typeof part === 'number' || typeof part === 'string';
     });
 
-    if (values.join('').includes(needle)) {
+    needle = needle.toLowerCase();
+
+    if (values.join('').toLowerCase().includes(needle)) {
       return true;
     }
 
@@ -17,4 +19,23 @@ export const findContact = (needle = 'query') => {
   });
 
   return results;
+};
+
+export const deleteContact = (contactId) => {
+  contactId = parseInt(contactId);
+  if (!contactId || isNaN(contactId)) {
+    return;
+  }
+
+  const contactIndex = contacts.findIndex((contact) => {
+    const { id } = contact;
+
+    return contactId === id;
+  });
+
+  if (contactIndex >= 0) {
+    // splice mutates
+    // manipulare genetica prin mutatii
+    contacts.splice(contactIndex, 1);
+  }
 };
