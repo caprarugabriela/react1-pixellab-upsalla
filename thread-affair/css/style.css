@@ -545,7 +545,8 @@ a {
   cursor: pointer;
 }
 
-.product-tile .product-a2c:hover {
+.product-tile .product-a2c:hover,
+.product-tile .product-a2c.active {
   color: #fff;
   background-color: #ff6b6b;
 }
