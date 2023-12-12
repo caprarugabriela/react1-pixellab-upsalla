@@ -74,3 +74,12 @@ export const editContact = (contact) => {
       contact[propertyName] || existingContact[propertyName];
   }
 };
+
+// addPet
+export const addPet = (contactId, pet) => {
+  const contact = getContact(contactId);
+  contact.pets = contact.pets || [];
+
+  // push mutates
+  contact.pets.push(pet);
+};

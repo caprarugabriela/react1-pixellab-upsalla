@@ -1,7 +1,15 @@
 import { addMessage, clearMessages } from './notificationBar.js';
-import { addContact, deleteContact, editContact, getContact } from './query.js';
+import {
+  addContact,
+  addPet,
+  deleteContact,
+  editContact,
+  getContact,
+} from './query.js';
 import renderMessage from './message.js';
 import { render as renderEditContact } from './editContactForm.js';
+import { render as renderAppForm } from './addPetForm.js';
+
 const stage = document.querySelector('.stage');
 
 // reset stage on logo click
@@ -152,8 +160,46 @@ stage.addEventListener('click', (event) => {
   clearMessages();
   stage.innerHTML = '';
 
-  // for next time
-  stage.append('add pet');
+  // adaugam formularul pt Add pet
+  stage.append(renderAppForm(contactId));
+});
+
+//add pet submit
+stage.addEventListener('submit', (event) => {
+  const { target } = event;
+
+  if (
+    target.nodeName !== 'FORM' ||
+    !target.classList.contains('add-pet-form')
+  ) {
+    return;
+  }
+
+  event.preventDefault();
+  const form = target;
+  // dom elements:
+  const { age, name, species, contactId } = form;
+  const pet = {
+    age: age.value,
+    name: name.value,
+    species: species.value,
+    // hack
+    id: Number(Date.now().toString().slice(-6)),
+  };
+
+  // addPet functionality
+  addPet(contactId.value, pet);
+  const { name: contactName, surname: contactSurname } = getContact(
+    contactId.value,
+  );
+
+  stage.innerHTML = '';
+  addMessage(
+    renderMessage(
+      `Pet ${name.value} added to contact ${contactName} ${contactSurname}.`,
+      'success',
+    ),
+  );
 });
 
 export default stage;
