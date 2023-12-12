@@ -5,7 +5,7 @@ export default [
     name: 'Carol',
     surname: 'Carolson',
     phone: '0741000000',
-    eamil: 'carol@carol.ro',
+    email: 'carol@carol.ro',
     pets: [
       {
         name: 'Rex',

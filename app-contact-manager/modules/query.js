@@ -39,3 +39,38 @@ export const deleteContact = (contactId) => {
     contacts.splice(contactIndex, 1);
   }
 };
+
+// add contact
+export const addContact = (contact) => {
+  // push mutates
+  contacts.push(contact);
+};
+
+// get contact (by id)
+export const getContact = (contactId) => {
+  // extra-sanity check
+  contactId = Number(contactId);
+
+  return contacts.find((contact) => {
+    const { id } = contact;
+
+    return id === contactId;
+  });
+};
+
+// editContact
+export const editContact = (contact) => {
+  const existingContact = getContact(contact.id);
+
+  // suprascriem proprietatile existente cu cele noi
+  const contactProperties = Object.keys(existingContact);
+
+  for (let i = 0; i < contactProperties.length; i++) {
+    const propertyName = contactProperties[i];
+
+    // in cazul in care modificam numele ne asiguram ca noul nume pastreaza
+    // toate informatiile vechi (existente deja)
+    existingContact[propertyName] =
+      contact[propertyName] || existingContact[propertyName];
+  }
+};
