@@ -533,7 +533,7 @@ a {
   font-weight: 500;
 }
 
-.product-tile .product-a2c {
+.product-tile .product-control {
   background-color: transparent;
   border: 1px solid #ff6b6b;
   padding: 10px 25px;
@@ -545,8 +545,8 @@ a {
   cursor: pointer;
 }
 
-.product-tile .product-a2c:hover,
-.product-tile .product-a2c.active {
+.product-tile .product-control:hover,
+.product-tile .product-control.active {
   color: #fff;
   background-color: #ff6b6b;
 }
