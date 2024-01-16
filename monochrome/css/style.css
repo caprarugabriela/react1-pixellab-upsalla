@@ -663,3 +663,23 @@ aside img {
 }
 /* footer-ul nu e aliniat ca in design.
 Il voi schimba daca trebuie, dar m-am distrat putin aranjanu-le */
+
+.fa-shopping-cart,
+.fa-heart {
+  background: none;
+  border: none;
+}
+
+.fa-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
