@@ -83,3 +83,49 @@ export const addPet = (contactId, pet) => {
   // push mutates
   contact.pets.push(pet);
 };
+
+// delete pet
+export const deletePet = (contactId, petId) => {
+  petId = parseInt(petId);
+  const contact = getContact(contactId);
+
+  if (!contact.pets) {
+    return;
+  }
+
+  const petIndex = contact.pets.findIndex((pet) => {
+    const { id } = pet;
+
+    return petId === id;
+  });
+
+  if (petIndex >= 0) {
+    contact.pets.splice(petIndex, 1);
+  }
+};
+
+// get pet
+export const getPet = (contactId, petId) => {
+  petId = Number(petId);
+
+  const contact = getContact(contactId);
+
+  return contact.pets.find((pet) => {
+    const { id } = pet;
+
+    return id === petId;
+  });
+};
+
+export const editPet = (contactId, pet) => {
+  const petId = pet.id;
+  const existingPet = getPet(contactId, petId);
+
+  const petProperties = Object.keys(existingPet);
+
+  for (let i = 0; i < petProperties.length; i++) {
+    const propertyName = petProperties[i];
+
+    existingPet[propertyName] = pet[propertyName] || existingPet[propertyName];
+  }
+};
